@@ -350,7 +350,59 @@
                 </div>
                 <i-code slot="code" lang="html">{{ code.prefix.code }}</i-code>
             </Demo>
-
+            <inAnchor title="代码示例 transfer" h2 />
+            <Demo title="transfer" vertical>
+                <div slot="demo">
+                    <Table class="curd-example-demo-table" :columns="code.columns" :data="code.data">
+                        <template
+                            v-for="column in code.columns"
+                            :slot="column.slot"
+                            slot-scope="{ row, index}"
+                        >
+                            <Form
+                                :key="column.slot"
+                                :model="JSON.parse(JSON.stringify(row))"
+                            >
+                                <Poptip
+                                    v-if="column.poptip"
+                                    :key="column.slot"
+                                    placement="left-start"
+                                >
+                                    <template v-if="column.poptip.displayField">
+                                        <FieldGenerator
+                                            :params-container="paramsContainer"
+                                            :field="column.poptip.displayField"
+                                        />
+                                    </template>
+                                    <template v-else>
+                                        <span>{{ row[column.slot] }}</span>
+                                    </template>
+                                    <Icon type="ios-create-outline" size="20" />
+                                    <div slot="content">
+                                        <FieldGenerator
+                                            v-for="(field, i) in column.poptip.formFields"
+                                            :key="i"
+                                            :params-container="paramsContainer"
+                                            :field="field"
+                                        />
+                                    </div>
+                                </Poptip>
+                                <div v-if="column.formFields">
+                                    <FieldGenerator
+                                        v-for="(field, i) in column.formFields"
+                                        :key="i"
+                                        :field="field"
+                                        @on-button-event="handleButtonEvent($event, row, index)"
+                                    />
+                                </div>
+                            </Form>
+                        </template>
+                    </Table>
+                </div>
+                <div slot="desc">
+                    <p>通过设置<code>field.transfer</code>是否将弹层放置于 body 内，在 Tabs、带有 fixed 的 Table 列内使用时，建议添加此属性，它将不受父级样式影响，从而达到更好的效果</p>
+                </div>
+            </Demo>
         </article>
     </i-article>
 </template>
@@ -361,7 +413,7 @@ import inAnchor from '../../../components/anchor';
 import iCode from '../../../components/code';
 import Demo from '../../../components/demo';
 import Code from '../../../code/doc/select';
-
+// eslint-disable-next-line no-unused-vars
 export default {
     components: {
         iArticle,
@@ -371,6 +423,7 @@ export default {
     },
     data() {
         return {
+            editModel: {},
             code: Code
         };
     },
