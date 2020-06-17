@@ -3,6 +3,7 @@ let simple = {};
 
 const field = {
     type: 'Select',
+    transfer: true,
     model: 'city',
     options: [
         {label: '北京', 'value': 'Beijing'},

@@ -37,6 +37,12 @@
                             <td>-</td>
                         </tr>
                         <tr>
+                            <td>transfer</td>
+                            <td>是否将弹层放置于 body 内，在 Tabs、带有 fixed 的 Table 列内使用时，建议添加此属性，它将不受父级样式影响，从而达到更好的效果</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
                             <td>prefix</td>
                             <td>在 Select 内部显示图标，传入<a href="https://www.iviewui.com/components/icon">icon</a>名称</td>
                             <td>String</td>
