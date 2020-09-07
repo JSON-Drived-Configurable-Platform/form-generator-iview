@@ -94,7 +94,7 @@ module.exports = {
         alias: {
             // 'vue': 'vue/dist/vue.esm.js',
             'vuex': 'vuex/dist/vuex.min.js',
-            'echarts': 'echarts/dist/echarts.min.js',
+            // 'echarts': 'echarts/dist/echarts.min.js',
             '@': resolve('src')
         }
     },
