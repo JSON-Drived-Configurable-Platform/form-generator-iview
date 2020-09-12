@@ -138,7 +138,7 @@ export default {
             return getValue({
                 originModel: this.FormInstance.model,
                 model: this.field.model
-            }) || '';
+            });
         }
     },
     created() {
