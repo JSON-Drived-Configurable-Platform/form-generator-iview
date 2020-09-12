@@ -1,6 +1,6 @@
 {
     "name": "form-generator-iview",
-    "version": "1.0.1-rc",
+    "version": "1.0.2-rc",
     "title": "formGeneratorIView",
     "description": "A form generator with json schema based on iview ui",
     "keywords": [
@@ -106,4 +106,3 @@
         "lint"
     ]
 }
-
