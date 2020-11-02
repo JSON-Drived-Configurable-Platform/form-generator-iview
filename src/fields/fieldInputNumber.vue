@@ -4,6 +4,8 @@
         :type="field.subtype"
         :step="field.step"
         :precision="field.precision"
+        :formatter="field.formatter"
+        :parser="field.parser"
         :size="size"
         :class="itemClasses"
         :max="field.max"
