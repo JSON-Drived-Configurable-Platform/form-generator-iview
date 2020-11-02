@@ -390,6 +390,8 @@ export default {
 
 
 export default {
+    columns,
+    data,
     simple,
     api,
     multiple,
