@@ -76,6 +76,18 @@
                             <td>Number</td>
                             <td>-</td>
                         </tr>
+                        <tr>
+                            <td>formatter</td>
+                            <td>指定输入框展示值的格式</td>
+                            <td>Function</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>parser</td>
+                            <td>指定从 formatter 里转换回数字的方式，和 formatter 搭配使用</td>
+                            <td>Function</td>
+                            <td>-</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -157,6 +169,20 @@
                     <p>通过设置<code>step</code>属性控制每次改变的精度。</p>
                 </div>
                 <i-code slot="code" lang="html">{{ code.simple.readonlyCode }}</i-code>
+            </Demo>
+            <Demo title="parse和formatter">
+                <div slot="demo">
+                    <Form :model="code.simple.data.model">
+                        <FieldGenerator
+                            :field="code.simple.data.parseField"
+                            @on-field-change="handleFieldChange"
+                        />
+                    </Form>
+                </div>
+                <div slot="desc">
+                    <p>通过 formatter 格式化数字，以展示具有具体含义的数据，往往需要配合 parser 一起使用。</p>
+                </div>
+                <i-code slot="code" lang="html">{{ code.simple.parseCode }}</i-code>
             </Demo>
         </article>
     </i-article>
