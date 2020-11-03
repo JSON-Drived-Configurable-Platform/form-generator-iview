@@ -48,6 +48,19 @@ const readonlyField = {
     size: 'large',
     readonly: true
 };
+const parseField = {
+    type: 'InputNumber',
+    model: 'stepage',
+    max: 100,
+    min: 1,
+    size: 'large',
+    formatter: function(value) {
+        return `${value}%`;
+    },
+    parser: function(value) {
+        return value.replace('%', '');
+    }
+};
 const model = {
     age: 1
 };
@@ -59,6 +72,7 @@ simple.data = {
     largeField,
     disabledField,
     readonlyField,
+    parseField,
     model
 };
 
@@ -197,7 +211,34 @@ export default {
     </Form>
 </template>
 `;
+simple.parseCode = `
+<script>
+const readonlyField = ${JSON.stringify(parseField, null, 4)};
+const model = ${JSON.stringify(model)};
+export default {
+    data() {
+        return {
+            field: readonlyField,
+            model: model
+        };
+    }
+    methods: {
+        handleFieldChange(model, value) {
+            console.log(model, value);
+        }
+    }
+};
+</script>
+<template>
+    <Form :model="model">
+        <FieldGenerator
+            :field="field"
+            @on-field-change="handleFieldChange"
+        />
+    </Form>
+</template>
+`;
 
 export default {
-    simple,
+    simple
 };
