@@ -3,6 +3,8 @@
         :value="value"
         :type="field.subtype"
         :step="field.step"
+        :formatter="field.formatter"
+        :parser="field.parser"
         :precision="field.precision"
         :size="size"
         :class="itemClasses"
