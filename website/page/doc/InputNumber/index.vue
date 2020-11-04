@@ -88,6 +88,12 @@
                             <td>Function</td>
                             <td>-</td>
                         </tr>
+                        <tr>
+                            <td>active-change</td>
+                            <td>是否实时响应数据，设置为 false 时，只会在失焦时更改数据</td>
+                            <td>Boolean</td>
+                            <td>true</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
