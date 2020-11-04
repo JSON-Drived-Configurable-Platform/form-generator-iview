@@ -6,6 +6,7 @@
         :formatter="field.formatter"
         :parser="field.parser"
         :precision="field.precision"
+        :active-change="field.activeChange"
         :size="size"
         :class="itemClasses"
         :max="field.max"

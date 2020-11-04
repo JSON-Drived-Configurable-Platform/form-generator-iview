@@ -54,6 +54,7 @@ const parseField = {
     max: 100,
     min: 1,
     size: 'large',
+    activeChage: false,
     formatter: function(value) {
         return `${value}%`;
     },
