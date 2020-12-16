@@ -139,6 +139,12 @@
                             <td>Function</td>
                             <td>-</td>
                         </tr>
+                        <tr>
+                            <td>selectAll</td>
+                            <td>支持全部选择和取消</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
                     </tbody>
                 </table>
                 <inAnchor title="Option配置" h3 />
