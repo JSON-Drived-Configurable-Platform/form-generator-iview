@@ -168,19 +168,23 @@ export default {
             if (value === undefined || value === null) {
                 value = '';
             }
+            
             if (this.field.multiple && value === undefined || value === null) {
                 value = [];
             }
+
             const valArr = [];
             this.computedOptions.forEach(item => {
                 valArr.push(item.value);
             });
+
             let valueData = this.FormInstance.model[this.field.model];
             // 全选
             if (value.includes('all')) {
                 this.$set(this.FormInstance.model, this.field.model, valArr);
                 this.oldValues = valArr;
             }
+
             // 点击其他取消全选
             if (value.includes('all') && value.length === this.computedOptions.length - 1) {
                 if (value[0] === 'all') {
@@ -189,6 +193,7 @@ export default {
                     this.oldValues = [];
                 }
             }
+
             // 反选
             if (value.length === this.oldValues.length - 1 && !value.includes('all')) {
                 value = [];
