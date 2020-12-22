@@ -41,18 +41,24 @@ jobs:
         steps:
             - name: Checkout 🛎️
               uses: actions/checkout@v2
+              env:
+                  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
               with:
                   persist-credentials: false
 
             # The built project is downloaded into the 'site' folder.
             - name: Download Artifacts
               uses: actions/download-artifact@v1
+              env:
+                  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
               with:
                   name: site
 
             # Deploy
             - name: Deploy to GitHub Pages
               uses: JamesIves/github-pages-deploy-action@3.5.2
+              env:
+                  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   BRANCH: gh-pages # The branch the action should deploy to.
