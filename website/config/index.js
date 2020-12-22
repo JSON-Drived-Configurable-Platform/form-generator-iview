@@ -246,6 +246,10 @@ export default {
                     label: 'Group Form',
                     name: '/examples/group-form'
                 },
+                {
+                    label: 'Custom Group Form',
+                    name: '/examples/custom-group-form'
+                },
                 // {
                 //     label: 'MultiStageValue Form',
                 //     name: '/examples/MultiStageValue-form'

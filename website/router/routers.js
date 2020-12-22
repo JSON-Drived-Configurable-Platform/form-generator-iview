@@ -61,6 +61,8 @@ const fieldGeneratorAndTable = () => import(/* webpackChunkName: "componentsChoo
 
 // examples
 const groupForm = () => import(/* webpackChunkName: "groupForm" */ '../page/examples/group-form');
+const customGroupForm = () => import(/* webpackChunkName: "customGroupForm" */ '../page/examples/group-form/custom-group');
+
 const multistageValueForm = () => import(/* webpackChunkName: "multis" */ '../page/examples/multistageValue-form');
 const CURDSimpleExample = () => import(/* webpackChunkName: "CURDExample" */ '../page/examples/CURD-example/simple');
 const CURDSimpleExampleInlineEdit = () => import(/* webpackChunkName: "CURDExample" */ '../page/examples/CURD-example/inline-edit');
@@ -360,6 +362,11 @@ export default [
                 path: '/examples/group-form',
                 name: '/examples/group-form',
                 component: groupForm
+            },
+            {
+                path: '/examples/custom-group-form',
+                name: '/examples/custom-group-form',
+                component: customGroupForm
             },
             // mutilValue examples
             {
