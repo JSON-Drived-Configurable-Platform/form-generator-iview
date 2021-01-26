@@ -16,6 +16,7 @@ const field = {
     type: 'Submit',
     subtype: 'primary',
     size: 'large',
+    transfer: false,
     text: '提交',
     action: {
         api: '/submit',
