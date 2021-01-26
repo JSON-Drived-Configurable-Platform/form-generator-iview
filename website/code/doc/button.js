@@ -263,7 +263,6 @@ const confirmField = {
         title: '确定删除?',
         placement: 'right',
         cancelText: '你好',
-        transfer: false,
         okText: '不好'
     },
     type: 'Button',
