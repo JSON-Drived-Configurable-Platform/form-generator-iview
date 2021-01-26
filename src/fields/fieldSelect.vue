@@ -98,8 +98,7 @@ export default {
         return {
             loading: false,
             options: [],
-            extraOptions: [],
-            oldValues: []
+            extraOptions: []
         };
     },
     computed: {
@@ -126,12 +125,6 @@ export default {
                     uniqeOptions.push(currentOption);
                     uniqeOptionsMap[currentOption.value] = true;
                 }
-            }
-            if (this.field.selectAll) {
-                uniqeOptions.unshift({
-                    label: '全部',
-                    value: 'all'
-                });
             }
             return uniqeOptions;
         },
@@ -172,46 +165,7 @@ export default {
             if (this.field.multiple && value === undefined || value === null) {
                 value = [];
             }
-
-            const valArr = [];
-            this.computedOptions.forEach(item => {
-                valArr.push(item.value);
-            });
-
-            let valueData = this.FormInstance.model[this.field.model];
-            // 全选
-            if (value.includes('all')) {
-                this.$set(this.FormInstance.model, this.field.model, valArr);
-                this.oldValues = valArr;
-            }
-
-            // 点击其他取消全选
-            if (value.includes('all') && value.length === this.computedOptions.length - 1) {
-                if (value[0] === 'all') {
-                    const duplicatedValues = [...new Set(valueData)].filter(item => value.includes(item)).splice(1);
-                    this.$set(this.FormInstance.model, this.field.model, duplicatedValues);
-                    this.oldValues = [];
-                }
-            }
-
-            // 反选
-            if (value.length === this.oldValues.length - 1 && !value.includes('all')) {
-                value = [];
-                this.oldValues = [];
-                
-            }
-            // 当其他全部选择时全选
-            if (valueData.length === this.computedOptions.length - 1 && this.oldValues.length === 0) {
-                let unValue = valueData.unshift('all');
-                this.$set(this.FormInstance.model, this.field.model, unValue);
-                this.oldValues = valueData;
-            }
-            if (value.includes('all')) {
-                this.$emit('on-change', this.field.model, this.FormInstance.model[this.field.model], null, this.field);
-            } else {
-                this.$emit('on-change', this.field.model, value, null, this.field);
-            }
-            
+            this.$emit('on-change', this.field.model, value, null, this.field);
         },
         remoteMethod(query) {
             if (!this.remote) {
