@@ -1,7 +1,7 @@
 <template>
     <Poptip
         v-if="field.confirmPoptip"
-        :transfer="field.transfer"
+        :transfer="field.confirmPoptip.transfer"
         confirm
         :title="field.confirmPoptip.title"
         :placement="field.confirmPoptip.placement"
