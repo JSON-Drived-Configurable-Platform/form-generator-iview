@@ -5,10 +5,6 @@ const field = {
     type: 'Select',
     transfer: true,
     model: 'city',
-    multiple: true,
-    selectAll: true,
-    defaultValueIndexes: [0],
-    maxTagCount: 1,
     options: [
         {label: '北京', 'value': 'Beijing'},
         {label: '上海', 'value': 'Shanghai'},
