@@ -161,10 +161,6 @@ export default {
             if (value === undefined || value === null) {
                 value = '';
             }
-            
-            if (this.field.multiple && value === undefined || value === null) {
-                value = [];
-            }
             this.$emit('on-change', this.field.model, value, null, this.field);
         },
         remoteMethod(query) {
