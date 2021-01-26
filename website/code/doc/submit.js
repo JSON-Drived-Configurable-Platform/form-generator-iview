@@ -14,6 +14,13 @@ let simple = {};
 
 const field = {
     type: 'Submit',
+    confirmPoptip: {
+        title: '确定提交?',
+        placement: 'right',
+        cancelText: '你好',
+        transfer: false,
+        okText: '不好'
+    },
     subtype: 'primary',
     size: 'large',
     text: '提交',
