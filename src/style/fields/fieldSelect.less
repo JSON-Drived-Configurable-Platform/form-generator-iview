@@ -1,0 +1,25 @@
+@select-prefix-cls: ~"@{css-prefix}-select";
+
+.@{select-prefix-cls} {
+    &-select-all-group {
+        display: flex;
+        align-items: center;
+        .ivu-select-group-title {
+            padding-left: 16px;
+            width: 50px;
+        }
+
+        ul {
+            width: 100px;
+        }
+
+    }
+
+    &-select-all-checkbox {
+        padding: 0px 16px;
+    }
+
+    &-select-all-divider {
+        margin: 0;
+    }
+}

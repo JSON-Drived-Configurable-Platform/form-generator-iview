@@ -332,6 +332,21 @@
                 </div>
                 <i-code slot="code" lang="html">{{ code.group.code }}</i-code>
             </Demo>
+            <Demo title="全选">
+                <div slot="demo">
+                    <Form :model="code.selectAll.data.model">
+                        <FieldGenerator
+                            :field="code.selectAll.data.field"
+                            :form-model="code.selectAll.data.model"
+                            @on-field-change="handleFieldChange"
+                        />
+                    </Form>
+                </div>
+                <div slot="desc">
+                    <p>通过设置<code>field.selectAll</code>是否展示可清空的icon。</p>
+                </div>
+                <i-code slot="code" lang="html">{{ code.selectAll.code }}</i-code>
+            </Demo>
             <Demo title="可清空">
                 <div slot="demo">
                     <Form :model="code.clearable.data.model">

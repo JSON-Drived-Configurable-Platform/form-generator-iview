@@ -2,6 +2,7 @@
     <div>
         <Select
             v-if="remote"
+            :class="classes"
             :value="value"
             :multiple="field.multiple || false"
             :disabled="field.disabled || false"
@@ -53,6 +54,17 @@
             :max-tag-placeholder="field.maxTagPlaceholder"
             @on-change="handleChange"
         >
+            <template v-if="field.selectAll && field.multiple">
+                <OptionGroup :class="selectAllGroupClasses" label="全选:">
+                    <Checkbox
+                        v-model="isSelectedAll"
+                        :class="selectAllCheckboxClasses"
+                        :indeterminate="selectAllIndeterminate"
+                        @on-change="handleSelectAllChange"
+                    />
+                </OptionGroup>
+                <Divider :class="selectAllDividerClasses" />
+            </template>
             <template v-for="item in computedOptions">
                 <OptionGroup
                     v-if="item.groupOptions"
@@ -76,6 +88,7 @@
     </div>
 </template>
 <script>
+import {classPrefix} from '../utils/const';
 import getOptions from '../mixins/getOptions';
 import {getValue} from '../utils/processValue';
 
@@ -98,10 +111,24 @@ export default {
         return {
             loading: false,
             options: [],
-            extraOptions: []
+            extraOptions: [],
+            isSelectedAll: false,
+            selectAllIndeterminate: false
         };
     },
     computed: {
+        classes() {
+            return `${classPrefix}-${this.field.type.toLowerCase()}`;
+        },
+        selectAllGroupClasses() {
+            return `${this.classes}-select-all-group`;
+        },
+        selectAllCheckboxClasses() {
+            return `${this.classes}-select-all-checkbox`;
+        },
+        selectAllDividerClasses() {
+            return `${this.classes}-select-all-divider`;
+        },
         remote() {
             return this.field.remote && !!this.optionsApi;
         },
@@ -111,6 +138,7 @@ export default {
         clearable() {
             return !this.field.multiple ? this.field.clearable : false;
         },
+        // todo: uniqe caculate should consider groupOptions
         computedOptions() {
             let options = this.options.length > 0 ? this.options : (Array.isArray(this.field.options) ? this.field.options : []);
             if (this.extraOptions) {
@@ -139,6 +167,9 @@ export default {
                 originModel: this.FormInstance.model,
                 model: this.field.model
             });
+        },
+        allValue() {
+            return this.computedOptions.map(item => item.value) || [];
         }
     },
     created() {
@@ -161,6 +192,20 @@ export default {
             if (value === undefined || value === null) {
                 value = '';
             }
+            if (this.field.selectAll && this.field.multiple) {
+                if (value.length > 0 && value.length < this.allValue.length) {
+                    this.selectAllIndeterminate = true;
+                }
+                else {
+                    this.selectAllIndeterminate = false;
+                }
+                if (value.length === this.allValue.length) {
+                    this.isSelectedAll = true;
+                }
+                else {
+                    this.isSelectedAll = false;
+                }
+            }
             this.$emit('on-change', this.field.model, value, null, this.field);
         },
         remoteMethod(query) {
@@ -172,6 +217,25 @@ export default {
                     [this.field.model]: query
                 }
             );
+        },
+        /**
+         * @param {boolean} selectAll is select all
+         */
+        handleSelectAllChange(selectAll) {
+            if (selectAll) {
+                this.selectAll();
+                return;
+            }
+            this.removeAll();
+        },
+
+        selectAll() {
+            const value = this.allValue;
+            this.$emit('on-change', this.field.model, value, null, this.field);
+        },
+
+        removeAll() {
+            this.$emit('on-change', this.field.model, [], null, this.field);
         }
     }
 };

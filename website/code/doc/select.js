@@ -311,6 +311,44 @@ export default {
 `;
 
 
+// 全选
+let selectAll = {};
+const selectAllField = {
+    type: 'Select',
+    model: 'province',
+    selectAll: true,
+    multiple: true,
+    filterable: true,
+    options: '/selectApi'
+};
+
+const selectAllModel = {
+    province: 'Beijing',
+};
+
+selectAll.data = {
+    field: selectAllField,
+    model: selectAllModel
+};
+
+selectAll.code = `
+<script>
+export default {
+    data() {
+        return {
+            field: ${JSON.stringify(selectAllField)},
+            model: ${JSON.stringify(selectAllModel)}
+        };
+    }
+};
+</script>
+<template>
+    <FieldGenerator
+        :field="field"
+    />
+</template>
+`;
+
 // 可清空
 let clearable = {};
 const clearableField = {
@@ -396,6 +434,7 @@ export default {
     filterable,
     remote,
     group,
+    selectAll,
     clearable,
     prefix
 };
