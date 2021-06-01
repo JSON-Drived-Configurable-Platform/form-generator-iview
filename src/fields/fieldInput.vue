@@ -19,6 +19,7 @@
         :number="field.number"
         :enter-button="field.enterButton"
         :size="size"
+        :show-word-limit="field.showWordLimit"
         @on-change="handleChange"
     >
         <span v-if="field.prepend" slot="prepend">{{ field.prepend }}</span>
